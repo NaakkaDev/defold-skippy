@@ -14,7 +14,8 @@ version = 0.1
 
 [android]
 package = com.naakkadev.skippy
+manifest = /skippy/manifests/android/AndroidManifest.xml
 minimum_sdk_version = 19
 
 [library]
-include_dirs = activity
+include_dirs = skippy
