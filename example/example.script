@@ -1,0 +1,29 @@
+function init(self)
+	-- The "Physical Activity" permission needs to be enabled in the app info -> permissions!
+	if sys.get_sys_info().system_name == "Android" then
+		-- Start the sensor listeners
+		skippy.start()
+
+		-- Get all steps, since the phone was turned on.
+		-- A slight delay because android reasons
+		timer.delay(0.2, false, function(_self, handle, time_elapsed)
+			local steps = skippy.get_steps()
+			label.set_text("/go#steps", steps)
+		end)
+
+		-- Get new steps, since the app opened, every two seconds
+		timer.delay(2, true, function(_self, handle, time_elapsed)
+			local new_steps = skippy.get_steps_detector()
+			label.set_text("/go#new_steps", new_steps)
+		end)
+	else
+		print("Skippy is only available on Android!")
+	end
+end
+
+function final(self)
+	-- Stop the sensor listeners.
+	-- Probably not needed here (final()) since the stop will be called in C++ side
+	-- when the app shuts down.
+	-- skippy.stop()
+end

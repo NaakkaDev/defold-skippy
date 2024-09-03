@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="{{android.package}}">
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH"/>
+    <uses-feature android:name="android.hardware.sensor.stepcounter"/>
+    <uses-feature android:name="android.hardware.sensor.stepdetector"/>
+    <uses-sdk android:targetSdkVersion="{{android.target_sdk_version}}"/>
+</manifest>

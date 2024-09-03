@@ -1,0 +1,20 @@
+[bootstrap]
+main_collection = /example/example.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 270
+height = 480
+
+[project]
+title = Skippy
+version = 0.1
+
+[android]
+package = com.naakkadev.skippy
+minimum_sdk_version = 19
+
+[library]
+include_dirs = activity

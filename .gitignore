@@ -1,0 +1,17 @@
+/.internal
+/build
+.externalToolBuilders
+.DS_Store
+Thumbs.db
+.lock-wscript
+*.pyc
+.project
+.cproject
+manifest.private.der
+manifest.public.der
+debug.keystore*
+.vscode
+.defignore
+.gitattributes
+builtins
+/.defold/api

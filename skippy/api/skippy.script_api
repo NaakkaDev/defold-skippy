@@ -1,0 +1,31 @@
+- name: skippy
+  type: table
+  members:
+
+  - name: start
+    type: function
+    desc: Start the sensor listeners.
+
+  - name: stop
+    type: function
+    desc: Stop the sensor listeners.
+
+  - name: get_steps
+    type: function
+    returns:
+    - name: steps
+      desc: All the steps since the device was powered on.
+
+            For Android this means the TYPE_STEP_COUNTER sensor data.
+
+      type: integer
+
+  - name: get_steps_detector
+    type: function
+    returns:
+    - name: steps_detected
+      desc: Amount of steps detected since the app was started.
+
+            For Android this means the TYPE_STEP_DETECTOR sensor data.
+
+      type: integer
