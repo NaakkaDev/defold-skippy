@@ -4,6 +4,8 @@
 
 #if defined(DM_PLATFORM_ANDROID)
 
+bool Started = false;
+
 static JNIEnv *Attach()
 {
     JNIEnv *env;
@@ -52,6 +54,12 @@ static jclass GetClass(JNIEnv *env, const char *classname)
 
 int Skippy_PlatformStart()
 {
+    // Do nothing if already running
+    if (Started)
+    {
+        return 1;
+    }
+
     // prepare JNI
     AttachScope attachscope;
     JNIEnv *env = attachscope.m_Env;
@@ -61,11 +69,19 @@ int Skippy_PlatformStart()
     jmethodID start_step = env->GetStaticMethodID(cls, "startStep", "(Landroid/content/Context;)V");
     env->CallStaticVoidMethod(cls, start_step, dmGraphics::GetNativeAndroidActivity());
 
+    Started = true;
+
     return 1;
 }
 
 int Skippy_PlatformStop()
 {
+    // Do nothing if not running
+    if (!Started)
+    {
+        return 1;
+    }
+
     // prepare JNI
     AttachScope attachscope;
     JNIEnv *env = attachscope.m_Env;
@@ -74,6 +90,8 @@ int Skippy_PlatformStop()
     // call method
     jmethodID stop_step = env->GetStaticMethodID(cls, "stopStep", "(Landroid/content/Context;)V");
     env->CallStaticVoidMethod(cls, stop_step, dmGraphics::GetNativeAndroidActivity());
+
+    Started = false;
 
     return 1;
 }
